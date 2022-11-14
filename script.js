@@ -1,20 +1,19 @@
 let currentDate = new Date();
-i = 0;
+const inputText = document.querySelector("#txt");
+const sendBtn = document.querySelector(".btnSend");
+const textDiv = document.querySelector(".container");
+
 
 class Messenger {
 
     history = [];
 
-    show_history() {
-        console.log(this.history);
-    }
-
-    send(author, message) {
-        this.name = author;
-        this.text = message;
-        this.time = currentDate.getHours() + ":" + currentDate.getMinutes();
-        this.history[i] = [this.time, this.name, this.text];
-        i++;
+    toHTML() {
+        let textToDiv = "";
+        for(let i = 0; i < this.history.length; i++) {
+            textToDiv += this.history[i];
+        }
+        textDiv.innerHTML = textToDiv;
     }
 }
 
@@ -25,13 +24,19 @@ class Message extends Messenger{
       this.text = text;
       this.time = time;
     }
-    toString(){
-        console.log(this.text, this.time, this.currentDate);
-    }
+
 }
 
+const msg = new Messenger();
+let arrHoldsInput = [];
 
-let messenger = new Messenger()
-messenger.send('Adil', 'ilk mesaj')
-messenger.send('Məryəm', 'İkinci mesaj')
-messenger.show_history()
+sendBtn.addEventListener('click', () => {
+    arrHoldsInput = inputText.value.split(" ");
+    msg.time = currentDate.getHours() + ":" + currentDate.getMinutes();
+    msg.name = arrHoldsInput[0];
+    msg.text = arrHoldsInput[1];
+
+    msg.history = [msg.time + " " + msg.name + " " + msg.text];
+
+    msg.toHTML();
+})
