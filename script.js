@@ -1,4 +1,3 @@
-let currentDate = new Date();
 const inputText = document.querySelector("#txt");
 const sendBtn = document.querySelector(".btnSend");
 const textDiv = document.querySelector(".container");
@@ -33,6 +32,7 @@ const msg = new Messenger();
 let arrHoldsInput = [];
 
 sendBtn.addEventListener('click', () => {
+    let currentDate = new Date();
     arrHoldsInput = inputText.value.split(" ");
     msg.time = currentDate.getHours() + ":" + currentDate.getMinutes();
     msg.name = arrHoldsInput[0];
