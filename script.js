@@ -2,7 +2,7 @@ let currentDate = new Date();
 const inputText = document.querySelector("#txt");
 const sendBtn = document.querySelector(".btnSend");
 const textDiv = document.querySelector(".container");
-
+let n = 0;
 
 class Messenger {
 
@@ -11,9 +11,11 @@ class Messenger {
     toHTML() {
         let textToDiv = "";
         for(let i = 0; i < this.history.length; i++) {
-            textToDiv += this.history[i];
+            textToDiv += "</br>" + this.history[i];
         }
-        textDiv.innerHTML = textToDiv;
+        if(n == 0) { textDiv.innerHTML = ""}
+        textDiv.innerHTML += textToDiv;
+        n++;
     }
 }
 
